@@ -7,9 +7,9 @@ http://ec2-18-218-36-211.us-east-2.compute.amazonaws.com/index.php
 
 End user Login 
 Username:	enduser1
-Password:	password1
+Password:	WILL BE ADDED AFTER PRESENTATION
 
 Admin Login
 Username:	admin1
-Password:	Welcome1
+Password:	WILL BE ADDED AFTER PRESENTATION
 
