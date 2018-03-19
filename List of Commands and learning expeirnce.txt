@@ -1,0 +1,407 @@
+//Creates the end user account with password = password123
+CREATE USER 'enduser'@'localhost' IDENTIFIED BY 'password123';
+
+//Grants the end user account INSERT, SELECT, UPDATE on Database IT635
+GRANT INSERT, SELECT, UPDATE ON IT635.* TO 'enduser'@'localhost';
+
+
+// Creates the table for Movies
+
+CREATE TABLE IF NOT EXISTS `Movies` (
+	`Movie_SN` int(10) NOT NULL auto_increment,
+	`movie_title` varchar(255),
+	`movie_studio` varchar(255),
+	`movie_year` numeric(9,2),
+	`movie_imdb_rating` numeric(9,2),
+	`movie_imdb_link` varchar(255),
+	`movie_source` varchar(255),
+	`movie_filename` varchar(255),
+	`movie_filesizegb` numeric(9,2),
+	`movie_runtimemin` numeric(9,2),
+	`movie_genre_a` varchar(255),
+	`movie_genre_b` varchar(255),
+	`movie_genre_c` varchar(255),
+	`movie_userreview` varchar(255),
+	PRIMARY KEY( `Movie_SN` )
+);
+
+//populates the Movies Table with movie info
+INSERT INTO Movies VALUES
+
+(1,  'About Schmidt', 										'New Line Cinema', 							 2002, 8.5, 'http://www.imdb.com/title/tt0257360', 'BluRay', 'About.Schmidt.2002.1080p.BluRay.X264-AMIABLE.mkv',										 8.7, 125, 'Comedy', 'Drama', 	     'NULL',     'NULL'),
+(2,  'Ghostbusters', 										'Columbia Pictures Corporation', 			 1984, 9.7, 'http://www.imdb.com/title/tt0087332', 'BluRay', 'Ghostbusters.1984.1080p.BluRay.x264-VOA.mkv',												 7.9, 105, 'Action', 'Comedy',		 'Fantasy',  'NULL'),
+(3,  'The Empire Strikes Back',								'Lucasfilm', 								 1980, 9.4, 'http://www.imdb.com/title/tt0080684', 'BluRay', 'Star.Wars.Episode.V.The.Empire.Strikes.Back.PROPER.1980.1080p.BluRay.X264-THUGLiNE.mkv', 	10.9, 127, 'Action', 'Adventure',	 'Fantasy',  'NULL'),
+(4,  'Independence Day', 									'Twentieth Century Fox Film Corporation',	 1996,   6,	'http://www.imdb.com/title/tt0116629', 'BluRay', 'Independence.Day.1996.EXTENDED.1080p.BluRay.X264-AMIABLE.mkv', 							15.3, 154, 'Action', 'Adventure',	 'Sci-fi', 	 'NULL'),
+(5,  'The Lion King',           							'Walt Disney Pictures',						 1994, 9.2, 'http://www.imdb.com/title/tt0110357', 'BluRay', '"The.Lion.King.1994.1080p.BluRay.x264-THUGLiNE.mkv"',										 7.7,  88, 'Action', 'Adventure',	 'Drama', 	 'NULL'),
+(6,  'Spider-Man', 											'Columbia Pictures', 						 2002, 7.3, 'http://www.imdb.com/title/tt0145487', 'BluRay', 'Spiderman.2002.1080p.Bluray.x264-hV.mkv',													10.1, 121, 'Action', 'Adventure',	 'Sci-fi',   'NULL'),
+(7,  'Indiana Jones and the Temple of Doom', 				'Lucasfilm', 								 1984, 8.5, 'http://www.imdb.com/title/tt0087469', 'BluRay', 'Indiana.Jones.and.the.Temple.of.Doom.1984.1080p.BluRay.X264-AMIABLE.mkv',				     8.7, 118, 'Action', 'Adventure',    'NULL',     'NULL'),
+(8,  'Lawless', 											'The Weinstein Company',					 2012, 6.7, 'http://www.imdb.com/title/tt1212450', 'BluRay', 'Lawless.2012.1080p.BluRay.x264-SPARKS.mkv',												 7.9, 116, 'Crime',  'Drama', 	     'NULL',     'NULL'),
+(9,  'Pacific Rim', 										'Legendary Pictures', 						 2013, 7.1, 'http://www.imdb.com/title/tt1663662', 'BluRay', 'Pacific.Rim.2013.1080p.BluRay.x264-SPARKS.mkv',											 8.8, 131, 'Action', 'Adventure',	 'Sci-fi',   'NULL'),
+(10, 'Star Trek II: The Wrath of Khan',						'Paramount Pictures',                        1982, 8.8, 'http://www.imdb.com/title/tt0084726', 'BluRay', 'Star.Trek.II.The.Wrath.Of.Khan.1982.1080p.BluRay.x264-FSiHD.mkv',							 8.0, 113, 'Action', 'Adventure',	 'Sci-fi',   'NULL'),
+(11, 'Transformers',										'Paramount Pictures', 						 2007, 7.1, 'http://www.imdb.com/title/tt0418279', 'HDDVD',  'Transformers.2007.1080p.HDDVD.x264-hV.mkv',												10.1, 143, 'Action', 'Adventure',	 'Sci-fi',   'NULL'),		
+(12, 'DuckTales: The Movie - Treasure of the Lost Lamp',	'DisneyToon Studios',                        1990, 8.8, 'http://www.imdb.com/title/tt0099472', 'WEB-DL', 'DuckTales.The.Movie.Treasure.of.the.Lost.Lamp.1990.1080p.WEB-DL.AAC2.0.H.264-HDCLUB.mkv',	 2.8,  74, 'Action', 'Adventure',	 'Comedy',   'NULL'),
+(13, 'Teen Titans: Trouble in Tokyo', 						'DC Comics', 								 2006, 7.2, 'http://www.imdb.com/title/tt0816671', 'WEBRip', 'Teen.Titans.Trouble.in.Tokyo.2007.1080p.AMZN.WEBRip.DD+2.0.x264-RTN.mkv',					 2.4,  75, 'Action', 'Adventure',	 'Comedy',   'NULL'),
+(14, 'Guardians of the Galaxy Vol. 2', 						'Marvel Studios', 							 2017, 7.7, 'http://www.imdb.com/title/tt3896198', 'UHD',    'Guardians.of.the.Galaxy.Vol.2.2017.2160p.UHD.BluRay.x265-TERMiNAL.mkv',					17.7, 136, 'Action', 'Adventure',	 'Sci-fi',   'NULL');	
+
+//Returns all Movie Titles in Database
+SELECT movie_title FROM Movies;
+
+//searches for movies that match "word" from movie_title and returns entire row. (Example is Lion)
+select * FROM Movies WHERE movie_title LIKE '%Lion%';
+
+//search for movies that match the Genre (across all 3 genre columns) being search for: (example is drama)
+select * FROM Movies WHERE movie_genre_a LIKE '%Drama%' OR movie_genre_b LIKE '%Drama%' OR movie_genre_c LIKE '%Drama%';
+
+////////////////////////////////////////////////////////////////////////////////////////Using new mutli table project/////////////////////////////////////////////////////////////////////
+//used to change the old Movies column's name
+ ALTER TABLE `Movies` CHANGE COLUMN `Movie_ID` `Movie_SN` int(10) NOT NULL;
+
+// will create new Movie Table that will contain the movie_id and Movie Title
+CREATE TABLE IF NOT EXISTS `movie` (
+	`movie_id` int(10) NOT NULL auto_increment,
+	`movie_title` varchar(255),
+	PRIMARY KEY( `movie_id` )
+) ENGINE INNODB;
+
+// will create new year table that will contain the movie year and have a foreign key that links to the Movie_ID foun in the Movies TABLE
+	
+CREATE Table IF NOT EXISTS movieyear (
+Movie_id int(10) not null,
+movie_year YEAR,
+foreign key (Movie_id) references movie(movie_id)
+ON UPDATE CASCADE
+) ENGINE INNODB;
+
+CREATE Table IF NOT EXISTS moviedirector (
+movie_id int(1) not null,
+`movie_director` varchar(255),
+foreign key (Movie_id) references movie(movie_id)
+ON UPDATE CASCADE
+) ENGINE INNODB;
+
+CREATE Table IF NOT EXISTS moviestudio (
+movie_id int(1) not null,
+`movie_studio` varchar(255),
+foreign key (Movie_id) references movie(movie_id)
+ON UPDATE CASCADE
+) ENGINE INNODB;
+
+CREATE Table IF NOT EXISTS movieimdb (
+movie_id int(1) not null,
+`movie_imdb` varchar(255),
+foreign key (Movie_id) references movie(movie_id)
+ON UPDATE CASCADE
+) ENGINE INNODB;
+
+CREATE Table IF NOT EXISTS moviefileinfo (
+movie_id int(1) not null,
+`movie_source` varchar(255),
+`movie_filename` varchar(255),
+`movie_gb` numeric(9,2),
+foreign key (Movie_id) references movie(movie_id)
+ON UPDATE CASCADE
+) ENGINE INNODB;
+
+CREATE Table IF NOT EXISTS moviegenre (
+movie_id int(1) not null,
+`movie_genre` varchar(255),
+foreign key (Movie_id) references movie(movie_id)
+ON UPDATE CASCADE
+) ENGINE INNODB;
+
+
+INSERT INTO movie VALUES (1,  'About Schmidt');
+INSERT INTO movieyear VALUES (1,  '2002');
+INSERT INTO moviedirector VALUES(1, 'Alexander Payne');
+INSERT INTO moviestudio VALUES(1, 'New Line Cinema');
+INSERT INTO movieimdb VALUES(1, 'http://www.imdb.com/title/tt0257360');
+INSERT INTO moviefileinfo VALUES(1, 'BluRay', 'About.Schmidt.2002.1080p.BluRay.X264-AMIABLE.mkv', 8.7);
+INSERT INTO moviegenre VALUES(1, 'Comedy, Drama');
+
+//to finish the 2nd movie
+INSERT INTO movieyear VALUES (2,  '1984');
+INSERT INTO moviedirector VALUES(2, 'Ivan Reitman');
+INSERT INTO moviestudio VALUES(2, 'Columbia Pictures Corporation');
+INSERT INTO movieimdb VALUES(2, 'http://www.imdb.com/title/tt0087332');
+INSERT INTO moviefileinfo VALUES(2, 'BluRay', 'Ghostbusters.1984.1080p.BluRay.x264-VOA.mkv', 7.9);
+INSERT INTO moviegenre VALUES(2, 'Action, Comedy, Fantasy');
+
+//USING LAST_INSERT_ID IN THE INSERT VALUE to add 1 movie, complete database, this is multiple queries
+
+INSERT INTO movie VALUES (NULL,  'The Empire Strikes Back');
+INSERT INTO movieyear VALUES(LAST_INSERT_ID(), '1980');
+INSERT INTO moviedirector VALUES(LAST_INSERT_ID(), 'Irvin Kershner');
+INSERT INTO moviestudio VALUES(LAST_INSERT_ID(), 'Lucasfilm');
+INSERT INTO movieimdb VALUES(LAST_INSERT_ID(), 'http://www.imdb.com/title/tt0080684');
+INSERT INTO moviefileinfo VALUES(LAST_INSERT_ID(), 'BluRay', 'Star.Wars.Episode.V.The.Empire.Strikes.Back.PROPER.1980.1080p.BluRay.X264-THUGLiNE.mkv', 10.9);
+INSERT INTO moviegenre VALUES(LAST_INSERT_ID(), 'Action, Adventure, Fantasy');
+
+//now to define a my SQL stored procedure to allow for 1 statement to add a multi insert to different tables;
+DELIMITER //
+CREATE PROCEDURE new_movie(movieid int(10), movietitle varchar(255), movieyear YEAR, moviedirector varchar(255), moviestudio varchar(255), 
+  movieimdb varchar(255), moviesource varchar(255), moviefilename varchar(255), moviegb numeric(9,2), moviegenre varchar(255)
+  )
+BEGIN
+START TRANSACTION;
+
+INSERT INTO movie (movie_id, movie_title)
+	VALUES(movieid, movietitle);
+	
+INSERT INTO movieyear (movie_id, movie_year)
+	VALUES(LAST_INSERT_ID(), movieyear);
+	
+INSERT INTO moviedirector (movie_id, movie_director)
+	VALUES(LAST_INSERT_ID(), moviedirector);
+	
+INSERT INTO moviestudio (movie_id, movie_studio)
+	VALUES(LAST_INSERT_ID(), moviestudio);
+
+INSERT INTO movieimdb (movie_id, movie_imdb)
+	VALUES(LAST_INSERT_ID(), movieimdb);
+	
+INSERT INTO moviefileinfo (movie_id, movie_source, movie_filename, movie_gb)
+	VALUES(LAST_INSERT_ID(), moviesource, moviefilename, moviegb);
+
+INSERT INTO moviegenre (movie_id, movie_genre)
+	VALUES(LAST_INSERT_ID(), moviegenre);
+
+COMMIT;
+END//
+DELIMITER ;
+
+
+
+//WORKING USE OF THE NEW SQL PROCEDURE!
+CALL new_movie(NULL, 'Independence Day', 1996, 'Roland Emmerich', 'Twentieth Century Fox Film Corporation', 'http://www.imdb.com/title/tt0116629', 'BluRay', 'Independence.Day.1996.EXTENDED.1080p.BluRay.X264-AMIABLE.mkv', 15.3, 'Action, Adventure, Sci-fi');
+
+//how to add movies table will handle the auto incremental movie_it
+INSERT INTO movie VALUES (NULL,  'MOVIE TITLE');
+
+//query movie title by LIKE Command, will return movie id
+select movie_id from movie WHERE movie_title LIKE '%About%';
+
+//query movie title using movie id #, will return movie title
+select movie_title from movie WHERE movie_id = 1;
+
+//query movie year using movid #, will return movie year
+select movie_year from movieyear WHERE movie_id = 1;
+
+//query movie director from moviedirector table using movie id #, will return movie director
+select movie_director from moviedirector WHERE movie_id =1;
+
+//query movie imdb link from movieimdb table using movie_id #, will return imdb link
+select movie_imdb from movieimdb WHERE movie_id =1;
+
+//query movie source from moviefileinfo table using movie_id#
+select movie_source from moviefileinfo where movie_id=1;
+
+//query movie file name from moviefileinfo table using movie_id#
+select movie_filename from moviefileinfo where movie_id=1;
+
+//query movie file in GB from moviefileinfo table using movie_id#
+select movie_gb from moviefileinfo where movie_id=1;
+
+//query movie genre from moviegenre table using movie_id# ( CAN RETURN 1-3 VALUES)
+select movie_genre from moviegenre where movie_id=1;
+
+
+
+//Now with this new table schema, how to query all table for respect data for movid id//
+
+// will return movie_genre and movie_ID
+SELECT moviegenre.movie_genre,moviegenre.movie_id
+FROM   moviegenre
+INNER JOIN movie
+ON moviegenre.movie_id=movie.movie_id
+WHERE movie.movie_id="1";
+
+// will return movie_id, movie_title, Movie_genre & Movie Director
+
+SELECT moviegenre.movie_id,movie.movie_title,moviegenre.movie_genre,moviedirector.movie_director
+FROM   moviegenre
+INNER JOIN movie
+ON moviegenre.movie_id=movie.movie_id
+INNER JOIN moviedirector
+ON moviedirector.movie_ID=movie.movie_id
+WHERE movie.movie_id="1";
+
+//will return movie_id, movie_title, movie year, Movie_genre & Movie Director
+SELECT moviegenre.movie_id, movie.movie_title, movieyear.movie_year, moviedirector.movie_director, moviegenre.movie_genre
+FROM   moviegenre
+INNER JOIN movie
+ON moviegenre.movie_id=movie.movie_id
+INNER JOIN moviedirector
+ON moviedirector.movie_ID=movie.movie_id
+INNER JOIN movieyear
+ON movieyear.movie_ID=movie.movie_id
+WHERE movie.movie_id="1";
+
+//will return movie_id, movie_title, movie year, Movie_genre & Movie Director
+SELECT moviegenre.movie_id, movie.movie_title, movieyear.movie_year, moviedirector.movie_director, moviegenre.movie_genre
+FROM   moviegenre
+INNER JOIN movie
+ON moviegenre.movie_id=movie.movie_id
+INNER JOIN moviedirector
+ON moviedirector.movie_ID=movie.movie_id
+INNER JOIN movieyear
+ON movieyear.movie_ID=movie.movie_id
+WHERE movie.movie_id="1";
+
+//will return movie_id, movie_title, movie year, Movie Director, Movie Studio, Movie IMDB, Movie_genre
+SELECT moviegenre.movie_id, movie.movie_title, movieyear.movie_year, moviedirector.movie_director, moviestudio.movie_studio, movieimdb.movie_imdb, moviegenre.movie_genre
+FROM   moviegenre
+INNER JOIN movie
+ON moviegenre.movie_id=movie.movie_id
+INNER JOIN moviedirector
+ON moviedirector.movie_ID=movie.movie_id
+INNER JOIN movieyear
+ON movieyear.movie_ID=movie.movie_id
+INNER JOIN moviestudio
+ON moviestudio.movie_ID=movie.movie_id
+INNER JOIN movieimdb
+ON movieimdb.movie_ID=movie.movie_id
+WHERE movie.movie_id="1";
+
+//will return movie_id, movie_title, movie year, Movie Director, Movie Studio, Movie IMDB, Movie_genre, movie_source, movie_filename and movie_gb
+SELECT movie.movie_ID,moviegenre.movie_id, movie.movie_title, movieyear.movie_year, moviedirector.movie_director, moviestudio.movie_studio, movieimdb.movie_imdb, moviegenre.movie_genre, moviefileinfo.movie_source, moviefileinfo.movie_filename, moviefileinfo.movie_gb
+FROM   moviegenre
+INNER JOIN movie
+ON moviegenre.movie_id=movie.movie_id
+INNER JOIN moviedirector
+ON moviedirector.movie_ID=movie.movie_id
+INNER JOIN movieyear
+ON movieyear.movie_ID=movie.movie_id
+INNER JOIN moviestudio
+ON moviestudio.movie_ID=movie.movie_id
+INNER JOIN movieimdb
+ON movieimdb.movie_ID=movie.movie_id
+INNER JOIN moviefileinfo
+ON moviefileinfo.movie_ID=movie.movie_id
+WHERE movie.movie_id="1";
+
+//now to solve how to add users, and create a review table that will contain 'movie id, user, review'
+
+CREATE Table IF NOT EXISTS user (
+user_username CHAR(8),
+user_password CHAR(32)
+PRIMARY KEY( user_username )
+);
+
+//query movie by genre and will return all matches
+SELECT movie.movie_ID,
+ movie.movie_title, movieyear.movie_year, moviedirector.movie_director, moviestudio.movie_studio, movieimdb.movie_imdb, moviegenre.movie_genre, moviefileinfo.movie_source, moviefileinfo.movie_filename, moviefileinfo.movie_gb
+FROM   moviegenre
+INNER JOIN movie
+ON moviegenre.movie_id=movie.movie_id
+INNER JOIN moviedirector
+ON moviedirector.movie_ID=movie.movie_id
+INNER JOIN movieyear
+ON movieyear.movie_ID=movie.movie_id
+INNER JOIN moviestudio
+ON moviestudio.movie_ID=movie.movie_id
+INNER JOIN movieimdb
+ON movieimdb.movie_ID=movie.movie_id
+INNER JOIN moviefileinfo
+ON moviefileinfo.movie_ID=movie.movie_id
+WHERE moviegenre.movie_genre LIKE '%Drama%';
+
+//to to create a movie review table
+
+CREATE Table IF NOT EXISTS moviereview (
+movie_id int(1) not null,
+`movie_review` varchar(255),
+foreign key (Movie_id) references movie(movie_id)
+ON UPDATE CASCADE
+) ENGINE INNODB;
+
+// how to add movie reviews into the movie reviews table
+INSERT INTO moviereview VALUES (1,  'This is a really good Dark Humour Movie!');
+
+//return movie data with movie reviews column by movie id - unused
+
+SELECT movie.movie_ID,moviegenre.movie_id, movie.movie_title, movieyear.movie_year, moviedirector.movie_director, moviestudio.movie_studio, movieimdb.movie_imdb, moviegenre.movie_genre, moviefileinfo.movie_source, moviefileinfo.movie_filename, moviefileinfo.movie_gb, moviereview.movie_review
+FROM   moviegenre
+INNER JOIN movie
+ON moviegenre.movie_id=movie.movie_id
+INNER JOIN moviedirector
+ON moviedirector.movie_ID=movie.movie_id
+INNER JOIN movieyear
+ON movieyear.movie_ID=movie.movie_id
+INNER JOIN moviestudio
+ON moviestudio.movie_ID=movie.movie_id
+INNER JOIN movieimdb
+ON movieimdb.movie_ID=movie.movie_id
+INNER JOIN moviereview
+ON moviereview.movie_ID=movie.movie_id
+INNER JOIN moviefileinfo
+ON moviefileinfo.movie_ID=movie.movie_id
+WHERE movie.movie_id="1";
+
+//return movie data by searching title with LIKE
+
+create user table for authentication on website
+
+CREATE TABLE IF NOT EXISTS `movieuser` (
+	`user_id` int(10) NOT NULL auto_increment,
+	`user_username` varchar(255),
+	`user_password` varchar(255),
+	`user_type` tinyint(1),
+	PRIMARY KEY( `user_id` )
+) ENGINE INNODB;
+
+CREATE TABLE IF NOT EXISTS `movieuser2` (
+	`user_id` int(10) NOT NULL auto_increment,
+	`user_username` varchar(255),
+	`user_password` CHAR(32),
+	`user_type` tinyint(1),
+	PRIMARY KEY( `user_id` )
+) ENGINE INNODB;
+
+//////user table with password md5
+CREATE TABLE IF NOT EXISTS `movieuser` (
+	`user_id` int(10) NOT NULL auto_increment,
+	`user_username` varchar(255),
+	`user_password` CHAR(32),
+	`user_type` tinyint(1),
+	PRIMARY KEY( `user_id` )
+) ENGINE INNODB;
+
+// inseting test values with md5
+INSERT INTO movieuser VALUES (NULL, 'enduser1', MD5('password1'), 0);
+INSERT INTO movieuser VALUES (NULL, 'enduser2', MD5('password2'), 0);
+INSERT INTO movieuser VALUES (NULL, 'admin1', MD5('Welcome1'), 1);
+
+
+// inseting test values
+INSERT INTO movieuser VALUES (NULL, 'enduser2', '".mkd5('password2')."', 0);
+INSERT INTO movieuser VALUES (NULL, 'enduser1', 'password1', 0);
+INSERT INTO movieuser VALUES (NULL, 'admin1', 'Welcome1', 1);
+
+will display error 
+
+ini_set("display_errors", true);
+
+
+my sql dump file
+
+ubuntu@ip-172-31-38-56:~/Final/a$ mysqldump -u root -p  IT635 > db_backup.sql
+
+
+
+	
+	
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
